@@ -1,54 +1,77 @@
-# React + TypeScript + Vite
+## Controlled Components
+Controlled components are form elements whose value is controlled by React state. 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+### In my code
+```jsx
+const [userInput, setUserInput] = useState("");
 
-Currently, two official plugins are available:
+const handleUserInput = (e: ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
+    setUserInput(e.target.value);
+  };
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+ <input
+        id="user"
+        type="text"
+        value={userInput}
+        onChange={handleUserInput}
+      />
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Use Cases
+1. Validate inputs as users type
+2. Show/hide elements based on user input (conditional render)
+3. Alter form fields based on other inputs
+4. Format phone numbers, currency, etc. as users type
+5.  Restrict input to specific patterns (numbers only, etc.)
+6. Keep track of data across multiple form steps
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### Advantages
+- Full control over input value and behavior
+- Can transform/sanitize input data in real-time
+- Easier to implement complex validation logic
+- Predictable form state
+- Centralized state management
+- Easier to test
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+### Disadvantages
+- More boilerplate code
+- Re-renders on every keystroke (potential performance issues with complex forms)
+- Requires a separate handler for each form field in large forms
+
+## Uncontrolled Components
+
+Uncontrolled components maintain their own internal state. Values are retrieved from the DOM using refs rather than being controlled by React state.
+
+### Implementation
+```jsx
+const passwordRef = useRef<HTMLInputElement>(null);
+
+const handleClick = () => {
+    alert(passwordRef.current?.value);
+};
+
+<input type="password" name="" ref={passwordRef} id="pass" />
 ```
+
+### Use Cases
+1. When you only need the value on submit
+2. File inputs are inherently uncontrolled
+3. When you need to minimize re-renders
+4. When working with third-party DOM libraries
+5. When you don't need to track changes
+6. When refactoring older code bases
+
+### Advantages
+- Less code for simple use cases
+- Better performance for large forms (no re-renders on every keystroke)
+- Simpler implementation for basic forms
+- Works well with file inputs and other complex input types
+- Easier integration with non-React code and libraries
+
+### Disadvantages
+- Less control over user input
+- Cannot perform real-time validation easily
+- More difficult to implement dynamic form behavior
+- Form state is less predictable and harder to test
+- Cannot enforce input format or constraints in real-time
