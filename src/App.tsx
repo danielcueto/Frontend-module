@@ -1,25 +1,20 @@
-import { ColorChanger } from "./components/ColorChanger";
-import { SpecialForm } from "./components/SpecialForm";
-import { TareaComponent } from "./components/App/TareaComponent";
-import { WidthHeightTracker } from "./components/WidthHeightTracker";
+import { Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import Books from "./pages/Books";
+import BookDetail from "./pages/BookDetail";
+import NotFound from "./pages/NotFound";
+import Layout from "./components/Layout";
 
 function App() {
   return (
-    <div className="min-h-screen  p-8 ">
-      <div className="max-w-5xl mx-auto grid gap-6">
-        <TareaComponent>
-          <ColorChanger />
-        </TareaComponent>
-
-        <TareaComponent>
-          <WidthHeightTracker />
-        </TareaComponent>
-
-        <TareaComponent>
-          <SpecialForm />
-        </TareaComponent>
-      </div>
-    </div>
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<Home />} />
+        <Route path="books" element={<Books />} />
+        <Route path="books/:id" element={<BookDetail />} />
+        <Route path="*" element={<NotFound />} />
+      </Route>
+    </Routes>
   );
 }
 
