@@ -15,7 +15,7 @@ const BookList = ({ books }: BookListProps) => {
           <p className="mb-4 line-clamp-3">{book.description}</p>
           <Link 
             to={`/books/${book.id}`}
-            className="text-blue-500 hover:underline"
+            className="text-red-500 hover:underline"
           >
             Details
           </Link>

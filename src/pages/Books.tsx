@@ -6,7 +6,7 @@ const Books = () => {
   return (
     <div className="min-h-screen p-8">
       <div className="mb-6">
-        <Link to="/" className="text-blue-500 hover:underline">← Home</Link>
+        <Link to="/" className="text-red-500 hover:underline">← Home</Link>
       </div>
       <h1 className="text-3xl font-bold mb-6">MyBooks</h1>
       <BookList books={books} />
