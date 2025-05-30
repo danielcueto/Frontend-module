@@ -2,6 +2,7 @@ import SocialMediaForm from "./components/SocialMediaForm";
 import { TestForm } from "./components/TestForm";
 import { TareaComponent } from "./TareaComponent";
 import RatingForm from "./components/RatingForm";
+import MultiStepForm from "./components/MultiStepForm";
 
 function App() {
   
@@ -18,6 +19,10 @@ function App() {
 
         <TareaComponent title="Rating Form with Formik and Yup">
           <RatingForm />
+        </TareaComponent>
+
+        <TareaComponent title="Multi-Step Form (Refactored)">
+          <MultiStepForm />
         </TareaComponent>
       </div>
     </div>
