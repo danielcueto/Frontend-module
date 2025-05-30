@@ -1,31 +1,24 @@
-import SocialMediaForm from "./components/SocialMediaForm";
-import { TestForm } from "./components/TestForm";
 import { TareaComponent } from "./TareaComponent";
-import RatingForm from "./components/RatingForm";
-import MultiStepForm from "./components/MultiStepForm";
+import { NotificationProvider } from "./context/NotificationContext";
+import { Notification } from "./components/Notification";
+import { Navbar } from "./components/Navbar";
+import { TriggerButton } from "./components/TriggerButton";
 
 function App() {
-  
   return (
-    <div className="min-h-screen bg-gradient-to-br from-pink-200 to-purple-50 p-8 ">
-      <div className="max-w-5xl mx-auto grid gap-6">
-        <TareaComponent title="Tarea 2">
-          <SocialMediaForm />
-        </TareaComponent>
-
-        <TareaComponent title="prueba: Formulario con UseForm">
-          <TestForm />
-        </TareaComponent>
-
-        <TareaComponent title="Rating Form with Formik and Yup">
-          <RatingForm />
-        </TareaComponent>
-
-        <TareaComponent title="Multi-Step Form (Refactored)">
-          <MultiStepForm />
-        </TareaComponent>
+    <NotificationProvider>
+      <div className="min-h-screen bg-gradient-to-br from-pink-200 to-purple-50 p-8">
+        <Notification />
+        <div className="max-w-5xl mx-auto">
+          <Navbar />
+          <div className="grid gap-6">
+            <TareaComponent title="Notification System Demo">
+              <TriggerButton />
+            </TareaComponent>
+          </div>
+        </div>
       </div>
-    </div>
+    </NotificationProvider>
   );
 }
 
