@@ -3,6 +3,7 @@ import { NotificationProvider } from "./context/NotificationContext";
 import { Notification } from "./components/Notification";
 import { Navbar } from "./components/Navbar";
 import { TriggerButton } from "./components/TriggerButton";
+import BrokenEffect from "./components/BrokenCall";
 
 function App() {
   return (
@@ -14,6 +15,9 @@ function App() {
           <div className="grid gap-6">
             <TareaComponent title="Notification System Demo">
               <TriggerButton />
+            </TareaComponent>
+            <TareaComponent title="practica en clase">
+                <BrokenEffect/>              
             </TareaComponent>
           </div>
         </div>
